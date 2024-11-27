@@ -7,7 +7,7 @@ $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
 // Preparar la consulta de búsqueda
 $sql = "SELECT * FROM productos WHERE nombre LIKE '%$buscar%' OR descripcion LIKE '%$buscar%' ORDER BY nombre LIMIT 5";
 
-$resultado = $conexion->query($sql);
+$resultado = $conn->query($sql);
 
 if ($resultado->num_rows > 0) {
     // Mostrar los productos encontrados
@@ -23,5 +23,5 @@ if ($resultado->num_rows > 0) {
     echo "No se encontraron productos que coincidan con tu búsqueda.";
 }
 
-$conexion->close();
+$conn->close();
 ?>
