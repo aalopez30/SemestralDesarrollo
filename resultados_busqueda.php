@@ -19,10 +19,13 @@ $productos = isset($_SESSION['resultados_busqueda']) ? $_SESSION['resultados_bus
             <?php if (isset($_SESSION['user_name'])): ?>
                 <span>Bienvenido, <?php echo $_SESSION['user_name']; ?> | </span>
                 <a href="perfil.php">Mi perfil</a> | 
-                <a href="logout.php">Cerrar sesión</a> |
+                <a href="index.php" > 
+                    Volver al Inicio </a> |
             <?php else: ?>
                 <a href="login.html">Iniciar sesión</a> | 
                 <a href="registro.html">Crear una cuenta</a> |
+                <a href="index.php"> 
+                Volver al Inicio </a> |
             <?php endif; ?>
             <a href="carrito-usuario.php" class="carrito-link">
                 Carrito (<span id="numero-carrito"><?php echo count($_SESSION['carrito'] ?? []); ?></span>)
