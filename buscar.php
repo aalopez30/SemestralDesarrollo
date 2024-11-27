@@ -9,19 +9,20 @@ $sql = "SELECT * FROM productos WHERE nombre LIKE '%$buscar%' OR descripcion LIK
 
 $resultado = $conn->query($sql);
 
+$productos = [];
 if ($resultado->num_rows > 0) {
-    // Mostrar los productos encontrados
+    // Guardar los productos encontrados en un array
     while ($producto = $resultado->fetch_assoc()) {
-        echo "<div>";
-        echo "<h3>".$producto['nombre']."</h3>";
-        echo "<p>".$producto['descripcion']."</p>";
-        echo "<p><strong>Cantidad disponible:</strong> ".$producto['cantidad']."</p>";
-        echo "<p><strong>Precio:</strong> $".$producto['precio']."</p>";
-        echo "</div><br>";
+        $productos[] = $producto;
     }
-} else {
-    echo "No se encontraron productos que coincidan con tu búsqueda.";
 }
 
+// Cerrar la conexión
 $conn->close();
+
+// Redirigir a la página de resultados con los productos encontrados
+session_start();
+$_SESSION['resultados_busqueda'] = $productos;
+header("Location: resultados_busqueda.php");
+exit;
 ?>

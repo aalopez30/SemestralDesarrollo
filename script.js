@@ -99,7 +99,6 @@ function actualizarNumeroCarrito() {
     .catch(error => console.error('Error al actualizar el número del carrito:', error));
 }
 
-// Actualizar el número del carrito al cargar la página
 document.addEventListener('DOMContentLoaded', actualizarNumeroCarrito);
 
 // Solo actualizar el carrito completo si estamos en la página del carrito
