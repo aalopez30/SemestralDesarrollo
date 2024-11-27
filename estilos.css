@@ -39,6 +39,28 @@ header input {
     margin-left: auto; /* Mueve la barra de búsqueda a la derecha */
 }
 
+/* Perfil */
+.perfil {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.perfil h2 {
+    margin-top: 0;
+}
+.perfil p {
+    margin: 10px 0;
+}
+.perfil .btn {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
 /* Menú de Navegación */
 nav {
     background-color: #000000;

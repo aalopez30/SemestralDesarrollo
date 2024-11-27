@@ -1,4 +1,3 @@
-
 <?php 
 include 'funciones.php'; 
 session_start(); // Inicia la sesión PHP para poder acceder a $_SESSION
@@ -44,7 +43,6 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
         </form>
     </header>
 
-
     <!-- Menú de Navegación -->
     <nav>
         <ul>
@@ -64,18 +62,21 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
                 <img src="mac.png" alt="MacBook Pro">
                 <p>Con pantalla Retina por solo <span>$1999</span></p>
                 <button onclick="agregarAlCarrito('MacBook Pro', 1999, 'mac.png')">Agregar al carrito</button>
+                <button onclick="verDetalles('MacBook Pro')">Ver detalles</button>
             </div>
             <div class="producto-carrusel">
                 <h2>Dell XPS 13</h2>
                 <img src="dell.png" alt="Dell XPS 13">
                 <p>Portátil ultraligero por <span>$1599</span></p>
                 <button onclick="agregarAlCarrito('Dell XPS 13', 1599, 'dell.png')">Agregar al carrito</button>
+                <button onclick="verDetalles('Dell XPS 13')">Ver detalles</button>
             </div>
             <div class="producto-carrusel">
                 <h2>Asus ROG Zephyrus</h2>
                 <img src="asus.png" alt="Asus ROG Zephyrus">
                 <p>Máximo rendimiento por <span>$2199</span></p>
                 <button onclick="agregarAlCarrito('Asus ROG Zephyrus', 2199, 'asus.png')">Agregar al carrito</button>
+                <button onclick="verDetalles('Asus ROG Zephyrus')">Ver detalles</button>
             </div>
         </div>
         <button class="boton-carrusel izquierdo">&#10094;</button>
@@ -91,36 +92,42 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
                 <h3>PC Gamer</h3>
                 <p>$500.00</p>
                 <button onclick="agregarAlCarrito('PC Gamer', 500, 'pc1.png')">Agregar al carrito</button>
+                <button onclick="verDetalles('PC Gamer')">Ver detalles</button>
             </div>
             <div class="producto">
                 <img src="pc2.jpg" alt="Laptop 1">
                 <h3>Laptop Gamer</h3>
                 <p>$700.00</p>
                 <button onclick="agregarAlCarrito('Laptop Gamer', 700, 'pc2.jpg')">Agregar al carrito</button>
+                <button onclick="verDetalles('Laptop Gamer')">Ver detalles</button>
             </div>
             <div class="producto">
                 <img src="grafica.jpg" alt="Grafica">
                 <h3>Tarjeta Grafica</h3>
                 <p>$500.00</p>
                 <button onclick="agregarAlCarrito('Tarjeta Grafica', 500, 'grafica.jpg')">Agregar al carrito</button>
+                <button onclick="verDetalles('Tarjeta Grafica')">Ver detalles</button>
             </div>
             <div class="producto">
                 <img src="ram.jpg" alt="Ram">
                 <h3>Ram</h3>
                 <p>$30.00</p>
                 <button onclick="agregarAlCarrito('Ram', 30, 'ram.jpg')">Agregar al carrito</button>
+                <button onclick="verDetalles('Ram')">Ver detalles</button>
             </div>
             <div class="producto">
                 <img src="teclado.jpg" alt="Teclado Gamer">
                 <h3>Teclado Gamer</h3>
                 <p>$25.00</p>
                 <button onclick="agregarAlCarrito('Teclado Gamer', 25, 'teclado.jpg')">Agregar al carrito</button>
+                <button onclick="verDetalles('Teclado Gamer')">Ver detalles</button>
             </div>
             <div class="producto">
                 <img src="mouse.webp" alt="Mouse Gamer">
                 <h3>Mouse Gamer</h3>
                 <p>$250.00</p>
                 <button onclick="agregarAlCarrito('Mouse Gamer', 250, 'mouse.webp')">Agregar al carrito</button>
+                <button onclick="verDetalles('Mouse Gamer')">Ver detalles</button>
             </div>
         </div>
     </section>
@@ -199,7 +206,11 @@ function reiniciarCambioAutomatico() {
 }
 
 iniciarCambioAutomatico(); // Inicia el cambio automático desde el principio
-    </script>
+
+function verDetalles(nombreProducto) {
+    window.location.href = `detalle_producto.php?nombre=${encodeURIComponent(nombreProducto)}`;
+}
+</script>
 
     <script src="script.js"></script>
 </body>
