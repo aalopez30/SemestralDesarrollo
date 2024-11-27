@@ -36,13 +36,10 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
     </div>
 
     <!-- Encabezado -->
-<header>
-    <h1>Tux Shop</h1>
-    <form action="buscar.php" method="GET">
-    <input type="text" name="buscar" placeholder="Buscar producto" value="">
-    <button type="submit">Buscar</button>
-</header>
-
+    <header>
+        <h1>Tux Shop</h1>
+        <input type="text" placeholder="Buscar en la tienda...">
+    </header>
 
     <!-- Menú de Navegación -->
     <nav>
@@ -96,6 +93,30 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
                 <h3>Laptop Gamer</h3>
                 <p>$700.00</p>
                 <button onclick="agregarAlCarrito('Laptop Gamer', 700, 'pc2.jpg')">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="https://cdn.panacompu.com/cdn-img/pv/824142319192-1.jpg?width=550&height=400&fixedwidthheight=false" alt="Grafica">
+                <h3>Tarjeta Grafica</h3>
+                <p>$500.00</p>
+                <button onclick="agregarAlCarrito('Tarjeta Grafica', 500, 'https://cdn.panacompu.com/cdn-img/pv/824142319192-1.jpg?width=550&height=400&fixedwidthheight=false')">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="https://m.media-amazon.com/images/I/61XmhmEup8L._AC_SL1000_.jpg" alt="Ram">
+                <h3>Ram</h3>
+                <p>$30.00</p>
+                <button onclick="agregarAlCarrito('Ram','30','https://m.media-amazon.com/images/I/61XmhmEup8L._AC_SL1000_.jpg')">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="https://dojiw2m9tvv09.cloudfront.net/9549/product/redtec0409674.jpg" alt="Teclado Gamer">
+                <h3>Teclado Gamer</h3>
+                <p>$25.00</p>
+                <button onclick="agregarAlCarrito('Teclado Gamer','25','https://dojiw2m9tvv09.cloudfront.net/9549/product/redtec0409674.jpg')">Agregar al carrito</button>
+            </div>
+            <div class="producto">
+                <img src="https://www.apcomputadores.com/wp-content/uploads/mouse-gamer-logitech-g502x.jpg.webp" alt="Mouse Gamer">
+                <h3>Mouse Gamer</h3>
+                <p>$250.00</p>
+                <button onclick="agregarAlCarrito('Mouse Gamer','250','https://www.apcomputadores.com/wp-content/uploads/mouse-gamer-logitech-g502x.jpg.webp')">Agregar al carrito</button>
             </div>
             <!-- Añade más productos según sea necesario -->
         </div>
