@@ -1,5 +1,5 @@
 <?php
-include 'conexion-inventario.php'; // Incluir la conexión a la base de datos
+include 'conexion.php'; // Incluir la conexión a la base de datos
 
 // Obtener el término de búsqueda
 $buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
