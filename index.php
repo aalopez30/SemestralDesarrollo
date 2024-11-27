@@ -23,6 +23,9 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
             <?php if (estaLogueado()): ?>
                 <span>Bienvenido, <?php echo $_SESSION['user_name']; ?> | </span>
                 <a href="perfil.php">Mi perfil</a> | 
+                <?php if (isset($_SESSION['user_rol']) && $_SESSION['user_rol'] == 'admin'): ?>
+                    <a href="admin.php">Administración</a> |
+                <?php endif; ?>
                 <a href="logout.php">Cerrar sesión</a> |
             <?php else: ?>
                 <a href="login.html">Iniciar sesión</a> | 
@@ -54,8 +57,8 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
         </ul>
     </nav>
 
-   <!-- Banner Principal (Carrusel) -->
-   <div id="carrusel" class="banner">
+    <!-- Banner Principal (Carrusel) -->
+    <div id="carrusel" class="banner">
         <div class="productos-container">
             <div class="producto-carrusel active">
                 <h2>MacBook Pro</h2>

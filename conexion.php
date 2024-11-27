@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "usuariostux";
+$dbname = "tienda"; // Cambia el nombre de la base de datos a 'tienda'
 
 // Crear la conexión
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,5 +1,5 @@
 <?php
-include 'conexion-inventario.php'; // Incluir la conexión a la base de datos
+include 'conexion.php'; // Incluir la conexión a la base de datos
 
 // Verificar si la conexión se ha establecido correctamente
 if (!$conn) {

@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hashear la contraseña
+    $rol = 'usuario'; // Establece el rol por defecto como 'usuario'
 
     // Verificar si los campos no están vacíos
     if (empty($nombre) || empty($email) || empty($password)) {
@@ -15,29 +16,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Verificar si el email ya está registrado
-    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $stmt->bindValue(':email', $email);
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
     $stmt->execute();
+    $resultado = $stmt->get_result();
 
-    if ($stmt->rowCount() > 0) {
+    if ($resultado->num_rows > 0) {
         // Si el email ya está registrado
         echo "El email ya está registrado.";
     } else {
         // Si el email no está registrado, insertar el nuevo usuario
-        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, password) VALUES (:nombre, :email, :password)");
-        $stmt->bindValue(':nombre', $nombre);
-        $stmt->bindValue(':email', $email);
-        $stmt->bindValue(':password', $password);
+        $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $nombre, $email, $password, $rol);
 
         // Verifica que la ejecución no falle
         if ($stmt->execute()) {
             // Obtener el ID del usuario recién creado
-            $userId = $pdo->lastInsertId();
+            $userId = $conn->insert_id;
 
             // Guardar datos del usuario en la sesión
             $_SESSION['user_id'] = $userId;
             $_SESSION['user_name'] = $nombre;
             $_SESSION['user_email'] = $email;
+            $_SESSION['user_rol'] = $rol;
 
             // Redirigir a la página principal después del registro exitoso
             header("Location: index.php");

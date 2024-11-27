@@ -8,10 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Buscar el usuario en la base de datos
-    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $stmt->bindValue(':email', $email);
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
     $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $resultado = $stmt->get_result();
+    $user = $resultado->fetch_assoc();
 
     // Verificar si el usuario existe y si la contraseña es correcta
     if ($user && password_verify($password, $user['password'])) {
@@ -19,9 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $user['id']; // Guardamos el ID del usuario en la sesión
         $_SESSION['user_name'] = $user['nombre']; // Guardamos el nombre del usuario
         $_SESSION['user_email'] = $user['email']; // Guardamos el email del usuario
+        $_SESSION['user_rol'] = $user['rol']; // Guardamos el rol del usuario
 
         // Redirigir al perfil del usuario
-        header("Location: index.php"); // Página del perfil del usuario
+        header("Location: index.php");
         exit;
     } else {
         echo "Email o contraseña incorrectos.";
