@@ -37,10 +37,11 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
 
     <!-- Encabezado -->
     <header>
-        <h1>Tux Shop</h1>
-        <input type="text" placeholder="Buscar en la tienda...">
-    </header>
-
+    <h1>Tux Shop</h1>
+    <form action="buscar.php" method="GET">
+    <input type="text" name="buscar" placeholder="Buscar producto" value="">
+    <button type="submit">Buscar</button>
+</header>
     <!-- Menú de Navegación -->
     <nav>
         <ul>
