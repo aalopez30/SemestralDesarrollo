@@ -28,7 +28,7 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles del Producto - Tux Shop</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="estilos.css"> <!-- Asegúrate de que la ruta sea correcta -->
     <style>
         .producto-detalle {
             display: flex;
@@ -51,6 +51,28 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
     </style>
 </head>
 <body>
+    <!-- Barra Superior -->
+    <div class="barra-superior">
+        <div class="izquierda">Bienvenido a nuestra tienda online</div>
+        <div class="derecha">
+            <span>Bienvenido, <?php echo $_SESSION['user_name']; ?> | </span>
+            <a href="perfil.php">Mi perfil</a> | 
+            <a href="index.php">Inicio</a> |
+            <a href="carrito-usuario.php" class="carrito-link">
+                Carrito (<span id="numero-carrito"><?php echo count($_SESSION['carrito'] ?? []); ?></span>)
+            </a>
+        </div>
+    </div>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>Tux Shop</h1>
+        <form action="buscar.php" method="GET" style="margin-left: auto;">
+            <input type="text" name="buscar" placeholder="Buscar producto" value="">
+            <button type="submit">Buscar</button>
+        </form>
+    </header>
+
     <div class="producto-detalle">
         <?php if ($producto): ?>
             <img src="<?php echo $producto['imagen']; ?>" alt="<?php echo $producto['nombre']; ?>">
@@ -64,5 +86,25 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
             <p>Producto no encontrado.</p>
         <?php endif; ?>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="info">
+            <h3>Información</h3>
+            <ul>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Términos</a></li>
+                <li><a href="#">Política de Privacidad</a></li>
+            </ul>
+        </div>
+        <br>
+        <div class="social">
+            <h3>Síguenos</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

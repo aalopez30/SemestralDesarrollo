@@ -216,6 +216,11 @@ footer a {
     text-decoration: none;
 }
 
+ul {
+    list-style: none; /* Elimina las viñetas y otros estilos */
+    padding-left: 0;  /* Elimina el espacio del borde izquierdo */
+}
+
 #btn-agr-det {
     padding: 10px 20px;
     font-size: 16px;

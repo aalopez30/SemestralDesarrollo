@@ -43,6 +43,7 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
         <form action="buscar.php" method="GET" style="margin-left: auto;">
             <input type="text" name="buscar" placeholder="Buscar producto" value="">
             <button type="submit">Buscar</button>
+            <img src="GordasNo.png"  height="50px" width="50px">
         </form>
     </header>
 
@@ -155,6 +156,7 @@ $carrito = obtenerCarrito(); // Obtiene el carrito desde la sesión
                 <li><a href="#">Política de Privacidad</a></li>
             </ul>
         </div>
+        <br>
         <div class="social">
             <h3>Síguenos</h3>
             <ul>
