@@ -6,16 +6,17 @@ if (!$conn) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
 
-// Array con productos de prueba (productos de tecnología)
+// Array con productos extraídos del index.php
 $productos = [
-    ["nombre" => "Laptop Dell XPS 13", "descripcion" => "Laptop ultradelgada con procesador Intel i7, 16GB RAM, 512GB SSD", "cantidad" => 10, "precio" => 1500],
-    ["nombre" => "Monitor Samsung 24''", "descripcion" => "Monitor Full HD de 24 pulgadas, 75Hz, con puertos HDMI y VGA", "cantidad" => 15, "precio" => 250],
-    ["nombre" => "Teclado mecánico Corsair K95", "descripcion" => "Teclado mecánico RGB, switches Cherry MX, con retroiluminación RGB", "cantidad" => 30, "precio" => 120],
-    ["nombre" => "Auriculares Bose QuietComfort 35", "descripcion" => "Auriculares inalámbricos con cancelación activa de ruido, batería de 20 horas", "cantidad" => 25, "precio" => 350],
-    ["nombre" => "Ratón Logitech G502", "descripcion" => "Ratón gaming con 11 botones programables, sensor HERO 25K", "cantidad" => 50, "precio" => 80],
-    ["nombre" => "SSD Kingston A2000 1TB", "descripcion" => "Disco sólido NVMe de 1TB, velocidad de lectura de 2200 MB/s", "cantidad" => 40, "precio" => 100],
-    ["nombre" => "Router TP-Link Archer AX50", "descripcion" => "Router Wi-Fi 6 de alto rendimiento con puertos gigabit", "cantidad" => 60, "precio" => 130],
-    ["nombre" => "Webcam Logitech C920", "descripcion" => "Cámara web Full HD 1080p, ideal para videoconferencias y streaming", "cantidad" => 35, "precio" => 75],
+    ["nombre" => "MacBook Pro", "descripcion" => "Con pantalla Retina", "cantidad" => 10, "precio" => 1999],
+    ["nombre" => "Dell XPS 13", "descripcion" => "Portátil ultraligero", "cantidad" => 15, "precio" => 1599],
+    ["nombre" => "Asus ROG Zephyrus", "descripcion" => "Máximo rendimiento", "cantidad" => 20, "precio" => 2199],
+    ["nombre" => "PC Gamer", "descripcion" => "PC Gamer de alto rendimiento", "cantidad" => 25, "precio" => 500],
+    ["nombre" => "Laptop Gamer", "descripcion" => "Laptop Gamer de alto rendimiento", "cantidad" => 30, "precio" => 700],
+    ["nombre" => "Tarjeta Grafica", "descripcion" => "Tarjeta gráfica de alto rendimiento", "cantidad" => 40, "precio" => 500],
+    ["nombre" => "Ram", "descripcion" => "Memoria RAM de alta velocidad", "cantidad" => 50, "precio" => 30],
+    ["nombre" => "Teclado Gamer", "descripcion" => "Teclado mecánico para gaming", "cantidad" => 60, "precio" => 25],
+    ["nombre" => "Mouse Gamer", "descripcion" => "Mouse gaming de alta precisión", "cantidad" => 70, "precio" => 250],
 ];
 
 // Insertar cada producto
