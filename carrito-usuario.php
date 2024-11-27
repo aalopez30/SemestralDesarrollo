@@ -56,7 +56,7 @@ $total = calcularTotal(); // Calcula el total de la compra
                         <li>
                             <img src="<?php echo $item['imagen']; ?>" alt="<?php echo $item['producto']; ?>" width="50">
                             <p><?php echo $item['producto']; ?> - $<?php echo number_format($item['precio'], 2); ?></p>
-                            <a href="eliminar_carrito.php?index=<?php echo $index; ?>">Eliminar</a>
+                            <button onclick="eliminarDelCarrito(<?php echo $index; ?>)">Eliminar</button>
                         </li>
                     <?php endforeach; ?>
                 <?php endif; ?>

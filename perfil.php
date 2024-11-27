@@ -4,6 +4,32 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login.php"); // Si no está logueado, redirige al login
     exit;
 }
+
+include 'conexion.php'; // Incluir la conexión a la base de datos
+
+// Verificar si la conexión se ha establecido correctamente
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Obtener los datos del usuario desde la base de datos
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM usuarios WHERE id = '$user_id'";
+$resultado = $conn->query($sql);
+
+if ($resultado === false) {
+    die("Error en la consulta SQL: " . $conn->error);
+}
+
+if ($resultado->num_rows > 0) {
+    $usuario = $resultado->fetch_assoc();
+} else {
+    echo "Usuario no encontrado.";
+    exit;
+}
+
+// Cerrar la conexión
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +46,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="derecha">
             <span>Bienvenido, <?php echo $_SESSION['user_name']; ?> | </span>
             <a href="perfil.php">Mi perfil</a> | 
-            <a href="logout.php">Cerrar sesión</a> |
+            <a href="index.php">Inicio</a> |
             <a href="carrito-usuario.php" class="carrito-link">
                 Carrito (<span id="numero-carrito"><?php echo count($_SESSION['carrito'] ?? []); ?></span>)
             </a>
@@ -39,8 +65,12 @@ if (!isset($_SESSION['user_id'])) {
     <!-- Contenido del Perfil -->
     <section class="perfil">
         <h2>Perfil de Usuario</h2>
-        <p><strong>Nombre:</strong> <?php echo $_SESSION['user_name']; ?></p>
-        <p><strong>Correo electrónico:</strong> <?php echo $_SESSION['user_email']; ?></p>
+        <form action="actualizar_perfil.php" method="POST">
+            <p><strong>Nombre:</strong> <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>"></p>
+            <p><strong>Correo electrónico:</strong> <input type="email" name="email" value="<?php echo $usuario['email']; ?>"></p>
+            <p><strong>Dirección:</strong> <input type="text" name="direccion" value="<?php echo $usuario['direccion']; ?>"></p>
+            <button type="submit" class="btn">Actualizar</button>
+        </form>
         <a href="logout.php" class="btn">Cerrar sesión</a>
     </section>
 
