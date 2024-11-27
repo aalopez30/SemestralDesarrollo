@@ -191,6 +191,7 @@ nav ul li a {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 /* Footer */
@@ -213,4 +214,15 @@ footer h3 {
 footer a {
     color: #ffcc00;
     text-decoration: none;
+}
+
+#btn-agr-det {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffcc00;
+    background-color: #000000;
+    border: 2.5px solid #ffcc00;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
