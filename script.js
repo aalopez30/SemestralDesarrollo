@@ -32,57 +32,6 @@ function eliminarDelCarrito(index) {
     .catch(error => console.error('Error al eliminar del carrito:', error));
 }
 
-function actualizarCarrito() {
-    fetch('carrito.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-            accion: 'listar'
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        const listaCarrito = document.getElementById('lista-carrito');
-        const totalCarrito = document.getElementById('total-carrito');
-        let total = 0;
-
-        listaCarrito.innerHTML = ''; // Limpiar la lista antes de actualizar
-        data.carrito.forEach((item, index) => {
-            // Crear el elemento de la lista
-            const li = document.createElement('li');
-
-            // Crear y agregar la imagen
-            const img = document.createElement('img');
-            img.src = item.imagen;
-            img.alt = item.producto;
-            img.style.maxWidth = '50px';
-            img.style.marginRight = '10px'; // Espacio entre la imagen y el texto
-            li.appendChild(img);
-
-            // Crear y agregar el texto del producto
-            const texto = document.createTextNode(`${item.producto} - $${parseFloat(item.precio).toFixed(2)}`);
-            li.appendChild(texto);
-
-            // Crear y agregar el botón para eliminar
-            const button = document.createElement('button');
-            button.textContent = 'Eliminar';
-            button.style.marginLeft = '10px'; // Espacio entre el texto y el botón
-            button.onclick = () => eliminarDelCarrito(index);
-            li.appendChild(button);
-
-            // Agregar el elemento completo a la lista
-            listaCarrito.appendChild(li);
-
-            // Sumar el precio al total
-            total += parseFloat(item.precio);
-        });
-
-        // Actualizar el total en el DOM
-        totalCarrito.textContent = total.toFixed(2);
-    })
-    .catch(error => console.error('Error al actualizar el carrito:', error));
-}
-
 function actualizarNumeroCarrito() {
     fetch('carrito.php', {
         method: 'POST',
@@ -101,7 +50,39 @@ function actualizarNumeroCarrito() {
 
 document.addEventListener('DOMContentLoaded', actualizarNumeroCarrito);
 
-// Solo actualizar el carrito completo si estamos en la página del carrito
-if (document.getElementById('lista-carrito')) {
-    document.addEventListener('DOMContentLoaded', actualizarCarrito);
+const botonIzquierdo = document.querySelector(".boton-carrusel.izquierdo");
+const botonDerecho = document.querySelector(".boton-carrusel.derecho");
+
+botonIzquierdo.addEventListener("click", (event) => {
+    event.preventDefault();
+    indiceActivo = (indiceActivo - 1 + productos.length) % productos.length;
+    mostrarProducto(indiceActivo);
+    reiniciarCambioAutomatico(); // Reinicia el contador cuando se cambia manualmente
+});
+
+botonDerecho.addEventListener("click", (event) => {
+    event.preventDefault();
+    indiceActivo = (indiceActivo + 1) % productos.length;
+    mostrarProducto(indiceActivo);
+    reiniciarCambioAutomatico(); // Reinicia el contador cuando se cambia manualmente
+});
+
+// Mostrar el primer producto al cargar la página
+mostrarProducto(indiceActivo);
+
+// Cambio automático cada 5 segundos
+let intervalo;
+function iniciarCambioAutomatico() {
+    intervalo = setInterval(() => {
+        indiceActivo = (indiceActivo + 1) % productos.length;
+        mostrarProducto(indiceActivo);
+    }, 5000); // Cambia cada 5 segundos
 }
+
+// Detener el cambio automático cuando el usuario interactúa
+function reiniciarCambioAutomatico() {
+    clearInterval(intervalo);
+    iniciarCambioAutomatico();
+}
+
+iniciarCambioAutomatico(); // Inicia el cambio automático desde el principio
