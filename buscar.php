@@ -1,23 +1,27 @@
 <?php
-include 'conexion.php';
+include 'conexion-inventario.php'; // Incluir la conexión a la base de datos
 
-// Datos del producto
-$nombre = "MacBook Pro";
-$descripcion = "Laptop con pantalla Retina y procesador M1";
-$precio = 1999.00;
-$cantidad = 10;
-$imagen = "macbook_pro.png";
+// Obtener el término de búsqueda
+$buscar = isset($_GET['buscar']) ? $_GET['buscar'] : '';
 
-// Insertar producto en la base de datos
-$sql = "INSERT INTO productos (nombre, descripcion, precio, cantidad, imagen)
-        VALUES ('$nombre', '$descripcion', $precio, $cantidad, '$imagen')";
+// Preparar la consulta de búsqueda
+$sql = "SELECT * FROM productos WHERE nombre LIKE '%$buscar%' OR descripcion LIKE '%$buscar%' ORDER BY nombre LIMIT 5";
 
-// Ejecutar la consulta
-if ($conn->query($sql) === TRUE) {
-    echo "Producto insertado correctamente";
+$resultado = $conexion->query($sql);
+
+if ($resultado->num_rows > 0) {
+    // Mostrar los productos encontrados
+    while ($producto = $resultado->fetch_assoc()) {
+        echo "<div>";
+        echo "<h3>".$producto['nombre']."</h3>";
+        echo "<p>".$producto['descripcion']."</p>";
+        echo "<p><strong>Cantidad disponible:</strong> ".$producto['cantidad']."</p>";
+        echo "<p><strong>Precio:</strong> $".$producto['precio']."</p>";
+        echo "</div><br>";
+    }
 } else {
-    echo "Error al insertar producto: " . $conn->error;
+    echo "No se encontraron productos que coincidan con tu búsqueda.";
 }
 
-$conn->close();
+$conexion->close();
 ?>
